@@ -122,3 +122,42 @@ Once you're done with the building, just remove that image:
 ````
 docker rmi --force cmakegcc
 ````
+
+### Workaround for podman
+
+Although **podman** and **docker** commands seem to be equivalent, *podman* is not very fond of mounting host folders when they don't exist inside of the container. Therefore you can create first those folders and then mount them with pprevious *docker* commands or just run a container, copy all your local directory, build and then copy the built library back to the host.
+
+The second approach might require a couple of terminals:
+
+- Run the container iteractive with bash in one terminal
+
+	podman run -it cmakegcc bash
+
+- In another one, learn the name of the container to copy the checked-out repository into it
+	
+	cd kdbExtension # checked-out project root
+	podman ps -a # learn the name of the container
+	podman cp . <container_name>:/root
+
+- Return to your container bash terminal and build the library
+
+	cd /root/kdbExtension
+	mkdir -p helloWorld/build                                                       17:16:02
+	cmake -S ./helloWorld -B ./helloWorld/build
+	cmake --build /root/kdbExtension/helloWorld/build
+
+- Return to your host terminal and copy that built library to some host folder
+
+	podman cp <container_name>:/root/kdbExtension/helloWorld/build/libHelloWorld.so
+
+- Time to exit the container from its bash terminal
+
+	exit
+
+- Double check in your host terminal that that container is not longer running
+
+	podman ps -a
+
+		
+
+	
