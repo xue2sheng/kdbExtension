@@ -57,3 +57,68 @@ Connection to centos closed.
 ⋊> ~/C/kdbExtension on main ◦ helloWorld/helloWorld.q 2>/dev/null                                             15:54:36
 42
 ````
+
+### Some logs to build using a Docker image
+
+In case you want to use the provided Dockerfile to build your libraries using the latest *gcc*, don't forget to specify your user **uid** to be able to remove easier binaries in your host:
+
+````
+⋊> ~/C/kdbExtension on main ◦ id                                                                              17:17:01
+uid=1000(user) gid=985(users) groups=985(users),966(chrome-remote-desktop),970(docker),974(libvirt),986(video),992(kvm),995(audio),998(wheel)
+````
+
+Therefore, my *uid* is 1000, a typical value.
+
+The root of my cloned git project contains the [Dockerfile](../Dockerfile). For example, name the image as **cmakegcc** when you build it the following command:
+
+````
+⋊> ~/C/kdbExtension on main ◦ docker build -t cmakegcc .                                                      17:17:04
+Sending build context to Docker daemon  423.4kB
+Step 1/2 : FROM gcc:latest
+ ---> 5d727bf4de0e
+Step 2/2 : RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf &&     apt-get update && apt-get install -y cmake neovim
+ ---> Using cache
+ ---> 311bca56c9ac
+Successfully built 311bca56c9ac
+Successfully tagged cmakegcc:latest
+````
+
+As you can see, I needed to add a specific *nameserver* because I didn't bore to configure my KVM/docker environment in the correct way.
+
+Then it's a question of correctly choosing the directories in the **docker/podman** and **cmake** commands:
+
+````
+⋊> ~/C/kdbExtension on main ◦ mkdir -p helloWorld/build                                                       17:16:02
+⋊> ~/C/kdbExtension on main ◦ docker run --rm -u 1000 -v "$PWD":/root -w /root cmakegcc cmake -S ./helloWorld -B ./helloWorld/build
+-- The C compiler identification is GNU 11.1.0
+-- The CXX compiler identification is GNU 11.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/local/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- /
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/helloWorld/build
+⋊> ~/C/kdbExtension on main ◦ docker run --rm -u 1000 -v "$PWD":/root -w /root cmakegcc cmake --build /root/helloWorld/build
+Scanning dependencies of target HelloWorld
+[ 50%] Linking CXX shared library libHelloWorld.so
+[100%] Built target HelloWorld
+⋊> ~/C/kdbExtension on main ◦ ldd ./helloWorld/build/libHelloWorld.so                                         17:16:51
+	linux-vdso.so.1 (0x00007fff369fa000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007f23e5af0000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f23e5923000)
+	/usr/lib64/ld-linux-x86-64.so.2 (0x00007f23e5c72000)
+````
+
+Once you're done with the building, just remove that image:
+
+````
+docker rmi --force cmakegcc
+````
