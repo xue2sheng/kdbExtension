@@ -4,7 +4,7 @@ Just an example of building a dynamic extension for **kdb+** using latest C++20 
 
 Take into account that the libc should be compatible between the building system and the execution one. For example, use the latest compiler in the older kernel Linux box to take advantage of probably **libc** compatibility.
 
-On my dev env, Archlinux g++ 10, my *q* environment got defined its **QHOME** and **QARCH** to locate the folder where the shared library should be installed. Modify that [CMakeList.txt](CMakeList.txt) to suit your needs.
+On my dev env, Archlinux g++ 10, my *q* environment got defined its **QHOME** and **QARCH** to locate the folder where the shared library should be installed. Modify that [CMakeLists.txt](CMakeLists.txt) to suit your needs.
 
 Once the library is installed, just execute the [helloWorld.q](helloWorld.q) script:
 
