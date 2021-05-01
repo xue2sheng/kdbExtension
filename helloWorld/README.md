@@ -25,7 +25,7 @@ In my case, my daily driver is Arch with g++ 10 at the time of writing these lin
 In the following logs you can check that the important part of this example not to forget linking statically against compiler depending libraries:
 
 ````
- ~/C/kdbExtension on main ◦ uname -a                                                                        15:52:59
+⋊> ~/C/kdbExtension on main ◦ uname -a                                                                        15:52:59
 Linux ArchLinux 5.11.16-arch1-1 #1 SMP PREEMPT Wed, 21 Apr 2021 17:22:13 +0000 x86_64 GNU/Linux
 ⋊> ~/C/kdbExtension on main ◦ g++ --version                                                                   15:53:42
 g++ (GCC) 10.2.0
@@ -33,7 +33,7 @@ Copyright (C) 2020 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
- ~/C/kdbExtension on main ◦ centos                                                                          15:53:48
+⋊> ~/C/kdbExtension on main ◦ centos                                                                          15:53:48
 Activate the web console with: systemctl enable --now cockpit.socket
 
 Last login: Sat May  1 15:41:10 2021 from 192.168.122.1
@@ -54,6 +54,6 @@ q)\l helloWorld.q
 [user@centos ~]$ exit
 logout
 Connection to centos closed.
- ~/C/kdbExtension on main ◦ helloWorld/helloWorld.q 2>/dev/null                                             15:54:36
+⋊> ~/C/kdbExtension on main ◦ helloWorld/helloWorld.q 2>/dev/null                                             15:54:36
 42
 ````
