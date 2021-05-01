@@ -10,7 +10,7 @@ Once the library is installed, just execute the [helloWorld.q](helloWorld.q) scr
 
 	./helloWorld.q 2>/dev/null
 
-Or if your system hasn't define *q* to be used in *shebang* scripts, just run it in the classic way inside *q*:
+Or if your system hasn't defined *q* to be used in *shebang* scripts, just run it in the classic way inside *q*:
 
 	\l helloWorld.q
 
