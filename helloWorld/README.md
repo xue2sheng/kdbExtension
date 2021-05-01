@@ -9,3 +9,11 @@ On my dev env, Archlinux g++ 10, my *q* environment got defined its **QHOME** an
 Once the library is installed, just execute the [helloWorld.q](helloWorld.q) script:
 
 	./helloWorld.q 2>/dev/null
+
+Or if your system hasn't define *q* to be used in *shebang* scripts, just run it in the classic way inside *q*:
+
+	\l helloWorld.q
+
+The answer to the Ultimate Question of Life, the Universe, and Everything is expected:
+
+	42
