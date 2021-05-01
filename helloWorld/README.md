@@ -142,7 +142,7 @@ podman cp . <container_name>:/root
 - Return to your container bash terminal and build the library
 ````
 cd /root/kdbExtension
-mkdir -p helloWorld/build                                                       17:16:02
+mkdir -p helloWorld/build 
 cmake -S ./helloWorld -B ./helloWorld/build
 cmake --build /root/kdbExtension/helloWorld/build
 ````
