@@ -125,7 +125,7 @@ docker rmi --force cmakegcc
 
 ### Workaround for podman
 
-Although **podman** and **docker** commands seem to be equivalent, *podman* is not very fond of mounting host folders when they don't exist inside of the container. Therefore you can create first those folders and then mount them with pprevious *docker* commands or just run a container, copy all your local directory, build and then copy the built library back to the host.
+Although **podman** and **docker** commands seem to be equivalent, *podman* is not very fond of mounting host folders when they don't exist inside of the container. Therefore you can create first those folders and then mount them with previous *docker* commands or just run a container, copy all your local directory, build and then copy the built library back to the host.
 
 The second approach might require a couple of terminals:
 
