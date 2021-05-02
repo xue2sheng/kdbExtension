@@ -133,22 +133,18 @@ The second approach might require a couple of terminals:
 ````
 podman run -it cmakegcc bash
 ````
-- In another one, learn the name of the container to copy the checked-out repository into it
-````
-cd kdbExtension # checked-out project root
-podman ps -a # learn the name of the container
-podman cp . <container_name>:/root
-````
 - Return to your container bash terminal and build the library
 ````
-cd /root/kdbExtension
+cd /root
 mkdir -p helloWorld/build 
-cmake -S ./helloWorld -B ./helloWorld/build
-cmake --build /root/kdbExtension/helloWorld/build
+cd helloWorld
+cmake .. 
+make
 ````
 - Return to your host terminal and copy that built library to some host folder
 ````
-podman cp <container_name>:/root/kdbExtension/helloWorld/build/libHelloWorld.so
+podman images -a # learn container name
+podman cp <container_name>:/root/helloWorld/build/libHelloWorld.so
 ````
 - Time to exit the container from its bash terminal
 ````

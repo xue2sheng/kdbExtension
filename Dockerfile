@@ -1,3 +1,5 @@
 FROM gcc:latest
+WORKDIR /root
+COPY . /root
 RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
-    apt-get update && apt-get install -y cmake neovim
+    apt-get update && apt-get install -y cmake neovim libboost-dev
