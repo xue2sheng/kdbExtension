@@ -1,0 +1,36 @@
+@startuml
+nwdiag {
+
+  group {
+    color = "#FFAA00";
+    description = "extended <b>TLS</b>";
+    feedhandler_extended;
+    kdb_extended;
+  }
+
+  group {
+    color = "#FFAAFF";
+    description = "vanilla <b>TLS</b>";
+    clients;
+  }
+ 
+ network external {
+    clients [shape=cloud];
+    feedhandler_extended [description="<&cog*5>\nextended\nfeedhandler"];
+ }
+ 
+ network internal {
+    feedhandler_extended;
+    kdb_extended[description="<&cog*5>\nextended\nKDB"];
+    kdb0 [shape=database];
+    kdb1 [shape=database];
+
+	  group {
+	    color = "#FFAAFF";
+	    description = "vanilla <b>TLS</b>"
+	    kdb0;
+	    kdb1;
+	  }
+    }
+}
+@enduml
