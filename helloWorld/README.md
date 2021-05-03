@@ -74,6 +74,7 @@ mkdir -p helloWorld/build
 docker run --rm -u <your_host_uid> -v "$PWD":/root -w /root <image_name> cmake -S ./helloWorld -B ./helloWorld/build
 docker run --rm -u <your_host_uid> -v "$PWD":/root -w /root <image_name> cmake --build /root/helloWorld/build
 ldd ./helloWorld/build/libHelloWorld.so 
+docker rmi --force <image_name> 
 ````
 
 In case you want to use the provided Dockerfile to build your libraries using the latest *gcc*, don't forget to specify your user **uid** to be able to remove easier binaries in your host:
@@ -136,7 +137,7 @@ Scanning dependencies of target HelloWorld
 Once you're done with the building, just remove that image:
 
 ````
-docker rmi --force cmakegcc
+⋊> ~/C/kdbExtension on main ◦ docker rmi --force cmakegcc
 ````
 
 ### Workaround for podman
