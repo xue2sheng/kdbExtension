@@ -1,0 +1,24 @@
+// plantuml.com
+@startuml 
+class ExtendedTLS {
+	TLS info
+	extended __khpun() with TLS
+}
+note top: if possible\nfollow current signatures\nto make it easier its integration
+class ExtendedFeedhandler {
+	KDB target info
+	TLS info
+	vanilla khpun() without TLS
+	extended __khpun() with TLS
+}
+note bottom: if possible\ncompatible with\ncurrent production compilers
+class ExtendedKDB {
+	KDB target info
+	TLS info
+	vanilla khpun() without TLS
+	extended __khpun() with TLS
+}
+note bottom: available\nlatest compilers\nif needed 
+ExtendedTLS <|--- ExtendedFeedhandler
+ExtendedTLS <|--- ExtendedKDB
+@enduml

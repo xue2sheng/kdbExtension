@@ -13,3 +13,5 @@ Several examples to extend **kdb+** using latest compilers in a way it can be ex
 ![diagram](images/diagram.png)
 
 Take into account that if you really want to extend your KDB production products, High Availability should be considered. For example, some kind of Load Balancers and at least the minimum scenario of A/B sides (automatically reconnecting to the 'live' side). No 'hello' example for that yet.
+
+![code](images/code.png)
