@@ -160,10 +160,24 @@ make
 ````
 - Return to your host terminal and copy that built library to some host folder
 ````
-podman images -a # learn container name
-podman cp <container_name>:/root/helloWorld/build/libHelloWorld.so
+podman ps -a # learn container name
+podman cp <container_name>:/root/helloWorld/build/libHelloWorld.so /tmp
 ````
-- Time to exit the container from its bash terminal
+
+Here you are some logs to compare to:
+````
+[user@centos ~]$ podman ps -a
+CONTAINER ID  IMAGE                      COMMAND  CREATED             STATUS                 PORTS   NAMES
+cc4f3633ce10  localhost/cmakegcc:latest  bash     About a minute ago  Up About a minute ago          modest_montalcini
+[user@centos ~]$ podman cp modest_montalcini:/root/helloWorld/build/libHelloWorld.so /tmp
+[user@centos ~]$ ldd /tmp/libHelloWorld.so
+	linux-vdso.so.1 (0x00007ffcd61c3000)
+	libm.so.6 => /lib64/libm.so.6 (0x00007fb41750b000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007fb417146000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fb41788d000)
+````
+
+Time to exit the container from its bash terminal
 ````
 exit
 ````
