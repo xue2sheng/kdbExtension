@@ -11,9 +11,11 @@ Several examples to extend **kdb+** using latest compilers in a way it can be ex
 - [helloTLSKdb](helloTLSKdb/) basic extension of current non-TLS connection *kdb* functions, where multithreading is not an issue, to use what learnt about TLS in the previous POC. Once double checked this part, it's when you can start estimating how long it might take extend your current production products, including all the DevOps and Testing involved.
 
 ![diagram](images/diagram.png)
+
 [link to diagram image](https://raw.githubusercontent.com/xue2sheng/kdbExtension/main/images/diagram.png)
 
 Take into account that if you really want to extend your KDB production products, High Availability should be considered. For example, some kind of Load Balancers and at least the minimum scenario of A/B sides (automatically reconnecting to the 'live' side). No 'hello' example for that yet.
 
 ![code](images/code.png)
+
 [link to code image](https://raw.githubusercontent.com/xue2sheng/kdbExtension/main/images/code.png)
